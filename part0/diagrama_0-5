@@ -1,0 +1,14 @@
+sequenceDiagram
+    participant Usuario
+    participant Navegador
+    participant Servidor
+    Usuario->>Navegador: ingresa al sitio web
+    Navegador->>Servidor: solicita la página web
+    Servidor->>Navegador: envía el HTML
+    Navegador->>Servidor: solicita css
+    Servidor->>Navegador: envía css
+    Navegador->>Servidor: solicita js
+    Servidor->>Navegador: envía js
+    Navegador->>Servidor: solicita los datos
+    Servidor->>Navegador: envía los datos
+    Navegador->>Usuario: renderiza la página web

@@ -1,0 +1,9 @@
+sequenceDiagram
+    participant Usuario
+    participant Navegador
+    participant Servidor
+
+    Usuario ->> Navegador: Solicita la creación de una nueva nota mediante la interacción con el botón del formulario
+    Navegador ->> Servidor: Envía la solicitud de creación de una nueva nota donde la nota es un objeto JSON
+    Servidor ->> Navegador: Responde con el codigo de estado HTTP 201 (Creado)
+    Navegador ->> Usuario: Muestra la nueva nota en el navegador sin necesidad de recargar el sitio

@@ -1,0 +1,16 @@
+sequenceDiagram
+    participant Usuario
+    participant Navegador
+    participant Servidor
+
+    Usuario ->> Navegador: Solicita la creación de una nueva nota mediante la interacción con el botón del formulario
+    Navegador ->> Servidor: Envía la solicitud de creación de una nueva nota
+    Servidor ->> Navegador: Solicita al Navegador que realice una petición Get a la dirección definida en el encabezado de la solicitud
+    Navegador ->> Servidor: vuelve a cargar la página, esta recarga provoca tres solicitudes al servidor:
+    Navegador ->> Servidor: Solicitud de la hoja de estilos CSS
+    Servidor ->> Navegador: Responde con la hoja de estilos CSS
+    Navegador ->> Servidor: Solicitud del archivo JavaScript
+    Servidor ->> Navegador: Responde con el archivo JavaScript
+    Navegador ->> Servidor: Solicitud de los datos sin procesar de la nota
+    Servidor ->> Navegador: Responde con los datos sin procesar de la nota
+    Navegador ->> Usuario: Muestra la nueva nota en el navegador
