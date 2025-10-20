@@ -25,17 +25,22 @@ const Metricas = ({good, neutral, bad, all, average, positive}) => {
       return (
     <div>
       <h1>statistics</h1>
-      <p>good {good}</p>
-      <p>neutral {neutral}</p>
-      <p>bad {bad}</p>
-      <p>all {all}</p>
-      <p>average {average}</p>
-      <p>positive {positive} %</p>
+      <UnicaMetrica text="good" value={good}/>
+      <UnicaMetrica text="neutral" value={neutral}/>
+      <UnicaMetrica text="bad" value={bad}/>
+      <UnicaMetrica text="all" value={all}/>
+      <UnicaMetrica text="average" value={average}/>
+      <UnicaMetrica text="positive" value={positive + " %"}/>
     </div>
   )
 }
   }
 
+const UnicaMetrica = ({text, value}) => {
+  return (
+    <p>{text} {value}</p>
+  )
+}
 
 
 
