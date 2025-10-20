@@ -13,7 +13,16 @@ const Button = ({onClick,text}) => {
 }
 
 const Metricas = ({good, neutral, bad, all, average, positive}) => {
-  return (
+  if (all === 0) {
+    return (
+      <div>
+        <h1>statistics</h1>
+        <p>No feedback given</p>
+      </div>
+    )
+  }
+  else{
+      return (
     <div>
       <h1>statistics</h1>
       <p>good {good}</p>
@@ -25,6 +34,8 @@ const Metricas = ({good, neutral, bad, all, average, positive}) => {
     </div>
   )
 }
+  }
+
 
 
 
