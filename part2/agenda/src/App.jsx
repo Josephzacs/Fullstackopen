@@ -13,8 +13,13 @@ const App = () => {
       name: newName,
       id: persons.length + 1,
     }
+    if (persons.find(person => person.name === newName)) {
+      alert(`${newName} is already added to phonebook`)
+      return
+    }
     setPersons(persons.concat(personObject))
     setNewName('')
+
   }
 
   const handleNameChange = (event) => {
