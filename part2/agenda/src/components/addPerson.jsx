@@ -21,8 +21,14 @@ const AddPerson = ({persons , setPersons}) => {
             alert('Name or Number cannot be empty')
             return
         }
-        if (persons.find(person => person.name === newName || person.number === newNumber)) {
-            alert(`${newName} is already added to phonebook`)
+        if (persons.find(person => person.name === newName )) {
+            window.confirm(`${newName} is already added to phonebook. Replace the old number with a new one?`)
+            agendaService.update(persons.find(person => person.name === newName ).id, {name: newName, number: newNumber})
+                .then(updatedPerson => {
+                    setPersons(persons.map(person => person.id !== updatedPerson.id ? person : updatedPerson))
+                    setNewName('')
+                    setNewNumber('')
+                })
             return
         }
         const personObject = {

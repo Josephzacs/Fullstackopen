@@ -3,7 +3,7 @@ import { useState} from 'react'
 
 const DeletePerson = ({ personId, setPersons }) => {
     
-    console.log("Deleting person with id:", personId);
+   
     const handleDelete = () => {
         window.confirm("Are you sure you want to delete this person?") &&
         agendaService.deletePerson(personId)
