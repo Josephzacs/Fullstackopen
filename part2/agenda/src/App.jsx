@@ -3,6 +3,7 @@ import AddPerson from './components/addPerson'
 import FiltroBusqueda from './components/filtroBusqueda'
 import ShowPerson from './components/showPerson'
 import axios from 'axios'
+import agendaService from './services/agenda'
 
 const App = () => {
   const [persons, setPersons] = useState([
@@ -10,20 +11,16 @@ const App = () => {
   
   const [filter, setFilter] = useState('')
 
-  const hook = () => {
-    console.log('effect')
-    axios
-      .get('http://localhost:3001/persons')
-      .then(response => {
-        console.log('promise fulfilled')
-        setPersons(response.data)
-      })
-  }
 
-  useEffect(hook, [])
+  useEffect(() => {
+    agendaService
+      .getAll()
+      .then(initialPersons => {
+        setPersons(initialPersons)
+      })
+  }, [])
 
  
-
   const handleFilterChange = (event) => {
     console.log(event.target.value)
     setFilter(event.target.value)
