@@ -28,7 +28,7 @@ const AddPerson = ({persons , setPersons}) => {
         const personObject = {
             name: newName,
             number: newNumber,
-            id: persons.length + 1,
+            
         }
 
         agendaService
