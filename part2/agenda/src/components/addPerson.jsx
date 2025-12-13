@@ -1,8 +1,7 @@
 import { useState} from 'react'
-import axios from 'axios'
 import agendaService from '../services/agenda'
 
-const AddPerson = ({persons , setPersons}) => {
+const AddPerson = ({persons , setPersons,setMessage,setType}) => {
     const [newName, setNewName] = useState('')
     const [newNumber, setNewNumber] = useState('')
 
@@ -29,6 +28,11 @@ const AddPerson = ({persons , setPersons}) => {
                     setNewName('')
                     setNewNumber('')
                 })
+            setMessage(`Updated ${newName}'s number`)
+            setType('success')
+            setTimeout(() => {
+                setMessage(null)
+            }, 5000)
             return
         }
         const personObject = {
@@ -44,6 +48,11 @@ const AddPerson = ({persons , setPersons}) => {
             setNewName('')
             setNewNumber('')
           })
+        setMessage(`Added ${newName}`)
+        setType('success')
+        setTimeout(() => {
+            setMessage(null)
+        }, 5000)
     }
 
 
