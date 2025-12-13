@@ -27,6 +27,13 @@ const AddPerson = ({persons , setPersons,setMessage,setType}) => {
                     setPersons(persons.map(person => person.id !== updatedPerson.id ? person : updatedPerson))
                     setNewName('')
                     setNewNumber('')
+                }).catch(error => {
+                    setMessage(`Information of ${newName} has already been removed from server`)
+                    setType('error')
+                    setTimeout(() => {
+                        setMessage(null)
+                    }, 5000)
+                    setPersons(persons.filter(n => n.name !== newName))
                 })
             setMessage(`Updated ${newName}'s number`)
             setType('success')
