@@ -1,4 +1,10 @@
-const ShowCountries = ({newCountries}) => {
+import { useState } from "react"
+import countriesServices from "../services/countries"
+
+const ShowCountries = ({newCountries,buscarUnicoPais}) => {
+
+
+  
  if (newCountries.length > 10) {
     return (
       <div>
@@ -17,7 +23,13 @@ const ShowCountries = ({newCountries}) => {
     return (
       <div>
         {newCountries.map((country) => (
-            <p key={country.name.common}>{country.name.common}</p>
+            
+            <p key={country.name.common}>{country.name.common}
+           
+            <button   onClick={() => (buscarUnicoPais(country.name.common)
+            )}>Show</button>
+            </p>
+            
         ))}
       </div>
     )

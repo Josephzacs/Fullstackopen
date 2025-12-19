@@ -24,7 +24,16 @@ function App() {
     setNewCountries(paisesFiltrados)
   }
 
-
+  const buscarUnicoPais = (name) => {
+    countriesServices.
+    getUnique(name).
+    then(data => {
+      const paisUnico = data
+      console.log('Pais unico obtenido:', paisUnico)
+      setNewCountries([paisUnico])
+    })
+  }
+  
  
   useEffect(()=>{
     countriesServices
@@ -43,7 +52,7 @@ function App() {
       </span>
       </form>
       <div>
-      <ShowCountries newCountries={newCountries}  />
+      <ShowCountries newCountries={newCountries}  buscarUnicoPais={buscarUnicoPais} />
       </div>
     </div>
   )
