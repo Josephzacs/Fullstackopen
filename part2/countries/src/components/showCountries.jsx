@@ -1,5 +1,4 @@
-import { useState } from "react"
-import countriesServices from "../services/countries"
+
 
 const ShowCountries = ({newCountries,buscarUnicoPais}) => {
 
@@ -47,6 +46,12 @@ const ShowCountries = ({newCountries,buscarUnicoPais}) => {
             ))} 
         </ul>
         <img src={country.flags.png} alt={`Flag of ${country.name.common}`} width="200"/>
+        <h2>Weather in {country.name.common}</h2>
+        
+
+        
+
+
       </div>
     )
   } else {

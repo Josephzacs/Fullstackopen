@@ -1,11 +1,15 @@
-import { useState,useEffect } from "react"
+import { useState,useEffect, use } from "react"
 import countriesServices from "./services/countries"
 import ShowCountries from "./components/showCountries"
+import climaServices from "./services/clima"
+import ShowClima from "./components/showClima"
 
 function App() {
   const [searchCountry, setSearchCountry] = useState('')
   const [newCountries, setNewCountries] = useState([])
   const [listCountries, setListCountries] = useState([])
+  const [clima, setClima] = useState(null)
+
   
 
  
@@ -17,6 +21,8 @@ function App() {
  
     
   }
+
+
 
   const buscarPais = (event) => {
     event.preventDefault()
@@ -31,9 +37,27 @@ function App() {
       const paisUnico = data
       console.log('Pais unico obtenido:', paisUnico)
       setNewCountries([paisUnico])
+    }).catch(error => {
+      console.error('Error fetching unique country:', error)
     })
   }
   
+  useEffect(() => {
+    if (newCountries.length === 1) {
+      const country = newCountries[0];
+      const lat = country.capitalInfo.latlng[0];
+      const lon = country.capitalInfo.latlng[1];
+  
+      climaServices.getClima(lat, lon)
+        .then(data => {
+          setClima(data);
+          console.log('Climate data fetched:', clima);
+        })
+        .catch(error => {
+          console.error('Error fetching climate data:', error);
+        });
+    }
+  }, [newCountries])
  
   useEffect(()=>{
     countriesServices
@@ -52,7 +76,8 @@ function App() {
       </span>
       </form>
       <div>
-      <ShowCountries newCountries={newCountries}  buscarUnicoPais={buscarUnicoPais} />
+      <ShowCountries newCountries={newCountries}  buscarUnicoPais={buscarUnicoPais}   />
+      <ShowClima  clima={clima} />
       </div>
     </div>
   )
